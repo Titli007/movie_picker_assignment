@@ -1,14 +1,31 @@
+# React Native Project
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Getting Started
+## Getting Started
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
-## Step 1: Start Metro
+### Step 1: Clone the Repository
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+```sh
+git clone <your-repository-url>
+cd <your-project-folder>
+```
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### Step 2: Install Dependencies
+
+```sh
+# Using npm
+npm install
+
+# OR using Yarn
+yarn install
+```
+
+### Step 3: Start Metro
+
+Metro is the JavaScript build tool for React Native. To start the Metro dev server, run the following command:
 
 ```sh
 # Using npm
@@ -18,11 +35,11 @@ npm start
 yarn start
 ```
 
-## Step 2: Build and run your app
+### Step 4: Build and Run Your App
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+With Metro running, open a new terminal and use one of the following commands to build and run your Android or iOS app:
 
-### Android
+#### Android
 
 ```sh
 # Using npm
@@ -32,23 +49,16 @@ npm run android
 yarn android
 ```
 
-### iOS
+#### iOS
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+For iOS, remember to install CocoaPods dependencies before running the app:
 
 ```sh
-bundle install
+bundle install  # Install CocoaPods itself
+bundle exec pod install  # Install native dependencies
 ```
 
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+Then, run:
 
 ```sh
 # Using npm
@@ -58,40 +68,62 @@ npm run ios
 yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+If everything is set up correctly, your app should now be running in an emulator or on a connected device.
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## Configuration
 
-## Step 3: Modify your app
+This project requires a `config.ts` file to store API keys and base URLs. Since this file contains sensitive data, it should not be committed to version control.
 
-Now that you have successfully run the app, let's make changes!
+### Step 1: Create a `config.ts` file
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+In the `src/` directory, create a new file named `config.ts` and add the following content:
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+```ts
+export const CONFIG = {
+  API_KEY: 'YOUR_API_KEY_HERE',
+  BASE_URL: 'http://www.omdbapi.com',
+};
+```
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+### Step 2: Add `config.ts` to `.gitignore`
 
-## Congratulations! :tada:
+To prevent committing sensitive data, open your `.gitignore` file and add:
 
-You've successfully run and modified your React Native App. :partying_face:
+```
+src/config.ts
+```
 
-### Now what?
+### Step 3: Using the Configuration in Your Code
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+You can now import and use the configuration in your app:
 
-# Troubleshooting
+```ts
+import { CONFIG } from './config';
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+console.log(CONFIG.API_KEY, CONFIG.BASE_URL);
+```
 
-# Learn More
+## Modify Your App
 
-To learn more about React Native, take a look at the following resources:
+Open `App.tsx` and make changes. Your app will automatically update when saved, thanks to [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+To force a reload:
+- **Android**: Press <kbd>R</kbd> twice or open the **Dev Menu** (`Ctrl + M` on Windows/Linux, `Cmd + M` on macOS).
+- **iOS**: Press <kbd>R</kbd> in the iOS Simulator.
+
+## Troubleshooting
+
+If you run into issues, check the [Troubleshooting Guide](https://reactnative.dev/docs/troubleshooting).
+
+## Learn More
+
+- [React Native Website](https://reactnative.dev)
+- [Environment Setup](https://reactnative.dev/docs/environment-setup)
+- [Learn the Basics](https://reactnative.dev/docs/getting-started)
+- [React Native Blog](https://reactnative.dev/blog)
+- [React Native GitHub](https://github.com/facebook/react-native)
+
+## Congratulations! 🎉
+
+You've successfully set up and configured your React Native app! 🚀
+

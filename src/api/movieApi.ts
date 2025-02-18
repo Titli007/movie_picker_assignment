@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { apiConfig } from '../config';
 
-const API_KEY = '4de8abab';
-const BASE_URL = `http://www.omdbapi.com`;
+const API_KEY = apiConfig.API_KEY;
+const BASE_URL = apiConfig.BASE_URL;
 
 
 export const fetchMovies = async (searchQuery : string, type = '', year = '', page = 1) => {
